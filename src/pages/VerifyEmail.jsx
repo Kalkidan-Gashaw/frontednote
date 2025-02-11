@@ -21,7 +21,7 @@ const VerifyEmail = () => {
     }
 
     try {
-      await axiosInstance.get(`/user/verify?token=${token}`); // Use axiosInstance
+      await axiosInstance.get(`/verify?token=${token}`); // Use axiosInstance
       alert("Email verified successfully. You can now log in.");
       navigate("/");
     } catch (error) {
