@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axiosInstance from "../services"; 
-import "bootstrap/dist/css/bootstrap.min.css"; 
+import React, { useState } from "react"; // Import React and useState
+import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
+import axiosInstance from "../services"; // Import your axios instance
+import "../index.css"; // Import your CSS for Tailwind or other styles
 
 const VerifyEmail = () => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const VerifyEmail = () => {
   const handleVerify = async () => {
     setLoading(true);
     const queryParams = new URLSearchParams(window.location.search);
-    const token = queryParams.get("token");
+    const token = queryParams.get("token"); // Use token
 
     if (!token) {
       alert(
@@ -25,7 +25,7 @@ const VerifyEmail = () => {
       alert("Email verified successfully. You can now log in.");
       navigate("/");
     } catch (error) {
-      console.error(error);
+      console.log(error);
       const message =
         error.response?.data?.message ||
         "Verification failed. Please try again.";
@@ -36,11 +36,14 @@ const VerifyEmail = () => {
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
       {loading ? (
-        <h2>Verifying your email...</h2>
+        <h2 className="text-xl">Verifying your email...</h2>
       ) : (
-        <button className="btn btn-success btn-lg" onClick={handleVerify}>
+        <button
+          className="bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200"
+          onClick={handleVerify}
+        >
           Verify Email
         </button>
       )}
