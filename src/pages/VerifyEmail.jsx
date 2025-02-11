@@ -1,7 +1,7 @@
-import React, { useState } from "react"; // Import React and useState
-import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
-import axiosInstance from "../services"; // Import your axios instance
-import "../index.css"; // Import your CSS for Tailwind or other styles
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../services"; 
+import "bootstrap/dist/css/bootstrap.min.css"; 
 
 const VerifyEmail = () => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const VerifyEmail = () => {
   const handleVerify = async () => {
     setLoading(true);
     const queryParams = new URLSearchParams(window.location.search);
-    const token = queryParams.get("token"); // Use token
+    const token = queryParams.get("token");
 
     if (!token) {
       alert(
@@ -21,11 +21,11 @@ const VerifyEmail = () => {
     }
 
     try {
-      await axiosInstance.get(`/verify?token=${token}`); // Use axiosInstance
+      await axiosInstance.get(`/user/verify?token=${token}`); // Use axiosInstance
       alert("Email verified successfully. You can now log in.");
       navigate("/");
     } catch (error) {
-      console.log(error);
+      console.error(error);
       const message =
         error.response?.data?.message ||
         "Verification failed. Please try again.";
@@ -36,19 +36,14 @@ const VerifyEmail = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white rounded-lg shadow-md p-6 max-w-sm w-full">
-        {loading ? (
-          <h2 className="text-xl text-gray-700">Verifying your email...</h2>
-        ) : (
-          <button
-            className="bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200 w-full"
-            onClick={handleVerify}
-          >
-            Verify Email
-          </button>
-        )}
-      </div>
+    <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
+      {loading ? (
+        <h2>Verifying your email...</h2>
+      ) : (
+        <button className="btn btn-success btn-lg" onClick={handleVerify}>
+          Verify Email
+        </button>
+      )}
     </div>
   );
 };
