@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5557",
+  baseURL: "https://backendnote-ynl8.onrender.com",
 });
 
 axiosInstance.interceptors.request.use(
