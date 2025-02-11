@@ -1,4 +1,4 @@
-export  const BASE_URL = "https://backendnote-8wei.onrender.com";
+export  const BASE_URL = "https://backendnote-ynl8.onrender.com";
 
 
 
